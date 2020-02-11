@@ -10,7 +10,7 @@ if (pid==0)
     read(a[0],s10,10);
     printf("the entered string is %s\n",s10);
     }
-else if(pid<0)
+else     if(pid<0)
     printf("error");
 else
     {

@@ -1,33 +1,28 @@
 #include<stdio.h>
 #include<unistd.h>
 int main(){
-int pid,a[10],b[10];
-pipe(a);
-pipe(b);
-char s1[20],s2[20];
-pid=fork();
-if (pid>0)
-{
-printf("enter the string\n");
-scanf("%s",s1);
-write(a[1],s1,20);
-printf("parent is reading\n");
-read(b[0],s2,20);
-printf("entered string is %s\n",s2);
-}
-else if(pid==0)
-{
-printf("child is processing\n");
-read(a[0],s1,20);
-printf("enter the string is %s\n",s1);
-printf("child is writing\n");
-printf("enter the string\n");
-scanf("%s",s2);
-write(b[1],s2,20);
-}
-else
-{
-printf("error\n");
-}
+    int pid,a[10],b[10];
+    pipe(a);
+    pipe(b);
+    char s1[20],s2[20],s3[20],s4[20];
+    pid=fork();
+    if (pid>0)
+        {
+        scanf("%s",s1);
+        write(a[1],s1,20);
+        read(b[0],s4,20);
+        printf("[parent]entered string is %s\n",s4);
+        }
+    else if(pid==0)
+        {
+        read(a[0],s2,20);
+        printf("[child]entered string is %s\n",s2);
+        scanf("%s",s3);
+        write(b[1],s3,20);
+        }
+    else
+        {
+        printf("error\n");
+        }
 }
 
